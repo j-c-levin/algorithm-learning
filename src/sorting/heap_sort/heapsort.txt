@@ -1,0 +1,17 @@
+heapify: Given an array and an index
+    The left-child is at the index double the current one, the right-child is at double the current index and one
+
+    If the left index is in the array, and the left-child is greater than the current element (its parent), set the current maximum as the left-child, otherwise set it at the current element
+
+    Same for the right, if the right index is in the array and the right-child is greater than the current maximum element, set the maximum as the right-child.
+
+    If the maximum element is not the current one, swap the current with the max, then recursively call heapify, where the array is the same one that was passed in but the max element index as the index.
+
+Build max heap: given an array
+    For half the array, rounded down, work backwards and call heapify with the array and the index
+
+Heapsort: Given an array
+    Use build max heap to construct a sorted heap.
+    Working backwards from the end of the array, swap the root element at position one with the current last element (since we're working backwards, that will be the index).
+    decrement the size of the array to search (so breaking off the largest element as it's already in place).
+    Then call heapify passing in the array and the first index, thus restoring the tree before doing it again. 
