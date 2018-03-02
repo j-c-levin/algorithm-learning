@@ -4,6 +4,7 @@ import { bubbleSort } from "../bubble_sort/index";
 import { extremesTesting, generateSortingTest } from "./unitTests";
 import { insertionSort } from "../insertion_sort/index";
 import { heapSort } from '../heap_sort/index';
+import { mergeSort } from "../merge_sort/index";
 
 interface Algorithm {
   name: string;
@@ -28,6 +29,10 @@ const algorithms: Algorithm[] = [
   {
     name: "heap sort",
     sort: heapSort
+  },
+  {
+    name: "merge sort",
+    sort: mergeSort
   }
 ];
 
@@ -37,9 +42,11 @@ describe("Sorting algorithms", function() {
     describe(algorithm.name, function() {
       // Test specific extreme cases of sorting
       extremesTesting.forEach(test => {
-        it(test.name, function() {
-          const output = algorithm.sort(test.input);
-          expect(output).to.deep.equal(test.output);
+        // Copy so that each test remains unordered to begin with
+        const copy = JSON.parse(JSON.stringify(test));
+        it(copy.name, function() {
+          const output = algorithm.sort(copy.input);
+          expect(output).to.deep.equal(copy.output);
         });
       });
       // Throw randomly generated orderings at the sorting algorithm

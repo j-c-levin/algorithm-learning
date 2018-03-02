@@ -6,6 +6,7 @@ var index_1 = require("../bubble_sort/index");
 var unitTests_1 = require("./unitTests");
 var index_2 = require("../insertion_sort/index");
 var index_3 = require("../heap_sort/index");
+var index_4 = require("../merge_sort/index");
 var numberOfGenerations = 100;
 var algorithms = [
     {
@@ -19,6 +20,10 @@ var algorithms = [
     {
         name: "heap sort",
         sort: index_3.heapSort
+    },
+    {
+        name: "merge sort",
+        sort: index_4.mergeSort
     }
 ];
 mocha_1.describe("Sorting algorithms", function () {
@@ -27,9 +32,11 @@ mocha_1.describe("Sorting algorithms", function () {
         mocha_1.describe(algorithm.name, function () {
             // Test specific extreme cases of sorting
             unitTests_1.extremesTesting.forEach(function (test) {
-                mocha_1.it(test.name, function () {
-                    var output = algorithm.sort(test.input);
-                    chai_1.expect(output).to.deep.equal(test.output);
+                // Copy so that each test remains unordered to begin with
+                var copy = JSON.parse(JSON.stringify(test));
+                mocha_1.it(copy.name, function () {
+                    var output = algorithm.sort(copy.input);
+                    chai_1.expect(output).to.deep.equal(copy.output);
                 });
             });
             var _loop_1 = function (i) {
