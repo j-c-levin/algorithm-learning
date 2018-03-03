@@ -1,1 +1,11 @@
-Describe mergesort here
+Mergesort: Recursively split up the array before rejoining it
+    If an array is larger than one element, split the array into halves and call mergesort on each half.
+
+    When it's one element long, return that element.
+
+    Each mergesort function calls merge on the two arrays that it separated out.
+
+Merge: Add items smallest first
+    Compare the two arrays and add/remove the smallest item from each array to the one to be returned.
+
+    Once one of the arrays is empty, simply add the other in the order in which it appears
